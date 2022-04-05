@@ -48,16 +48,22 @@ void setServo_f(PWM *ServoStruct, float move){
 }
 
 
-// GPIO pin, offsets (%, + gives greater range, - gives reduced range), inverted (false normally)
-PWM enableServo(int8_t pwm_pin, int8_t starting_percent, int8_t min_percent, int8_t max_percent, uint8_t ignore_percent, bool inverted) {
+/* Arguments: 
+    - GPIO pin used for PWM.
+    - Starting percentage (tends to be 50).
+    - Min value offset. x% where + gives greater range, - gives reduced range.
+    - Max value offset. x% where + gives greater range, - gives reduced range.
+    - Ignore percentage, x% change that is ignored on a servo level
+    - Inverted flips servo motion */
+PWM enableServo(int8_t pwm_pin, int8_t starting_percent, int8_t min_percent_offset, int8_t max_percent_offset, uint8_t ignore_percent, bool inverted) {
     PWM pwm;
 
     if(inverted == false) {
-        pwm.pulseMin = (int16_t) (1000 - (10 * min_percent)); // *10 to convert percentage inc/dec into pulse width.
-        pwm.pulseMax = (int16_t) (2000 + (10 * max_percent));
+        pwm.pulseMin = (int16_t) (1000 - (10 * min_percent_offset)); // *10 to convert percentage inc/dec into pulse width.
+        pwm.pulseMax = (int16_t) (2000 + (10 * max_percent_offset));
     } else {
-        pwm.pulseMin = (int16_t) (2000 + (10 * max_percent));
-        pwm.pulseMax = (int16_t) (1000 - (10 * min_percent)); 
+        pwm.pulseMin = (int16_t) (2000 + (10 * max_percent_offset));
+        pwm.pulseMax = (int16_t) (1000 - (10 * min_percent_offset)); 
     }
     pwm.range = pwm.pulseMax - pwm.pulseMin;
     pwm.output = pwm.pulseMin + ((pwm.range/100) * starting_percent);
