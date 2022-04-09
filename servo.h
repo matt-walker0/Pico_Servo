@@ -13,10 +13,10 @@ typedef struct {
 } PWM;
 
 // Set servo based upon values between 1 (min) and 255 (max)
-void Servo_PosD(PWM *ServoStruct, uint8_t move){
+void Servo_PosD(PWM *ServoStruct, uint8_t move);
 
 // Set servo based upon values between -1(min) and +1(max)
-void Servo_PosF(PWM *ServoStruct, float move){
+void Servo_PosF(PWM *ServoStruct, float move);
 
 /* Arguments: 
     - GPIO pin used for PWM.
