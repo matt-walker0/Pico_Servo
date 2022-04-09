@@ -13,10 +13,10 @@ typedef struct {
 } PWM;
 
 // Set servo based upon values between 1 (min) and 255 (max)
-void setServo_d(PWM *ServoStruct, uint8_t move);
+void Servo_PosD(PWM *ServoStruct, uint8_t move){
 
 // Set servo based upon values between -1(min) and +1(max)
-void setServo_f(PWM *ServoStruct, float move);
+void Servo_PosF(PWM *ServoStruct, float move){
 
 /* Arguments: 
     - GPIO pin used for PWM.
@@ -25,6 +25,6 @@ void setServo_f(PWM *ServoStruct, float move);
     - Max value offset. x% where + gives greater range, - gives reduced range.
     - Ignore percentage, x% change that is ignored on a servo level
     - Inverted flips servo motion */
-PWM enableServo(int8_t pwm_pin, int8_t starting_percent, int8_t min_percent_offset, int8_t max_percent_offset, uint8_t ignore_percent, bool inverted);
+PWM Servo_Init(int8_t pwm_pin, int8_t starting_percent, int8_t min_percent_offset, int8_t max_percent_offset, uint8_t ignore_percent, bool inverted);
 
 #endif
