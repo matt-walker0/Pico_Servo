@@ -15,7 +15,7 @@
 
 
 // Set servo based upon values between 1 (min) and 255 (max)
-void Servo_PosF(PWM *ServoStruct, uint8_t move){
+void Servo_PosD(PWM *ServoStruct, uint8_t move) {
     uint16_t prev_output = ServoStruct->output; 
 
     // Go from 1-255 -> Servo x's min-max
@@ -32,7 +32,7 @@ void Servo_PosF(PWM *ServoStruct, uint8_t move){
 
 
 // Set servo based upon values between -1(min) and +1(max)
-void Servo_PosD(PWM *ServoStruct, float move){
+void Servo_PosF(PWM *ServoStruct, float move) {
     uint16_t prev_output = ServoStruct->output; 
 
     // Go from +-1 -> Servo x's min-max
